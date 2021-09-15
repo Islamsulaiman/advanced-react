@@ -3,6 +3,7 @@ import React from 'react';
 const ErrorExample = () => {
   let title = "random title";
   let handleClick = () => {
+    title = "new value";  //but this will not change the html because it's already been rendered.
     console.log("handle click");
   }
   return (
