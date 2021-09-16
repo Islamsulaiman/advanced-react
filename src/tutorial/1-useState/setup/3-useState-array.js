@@ -1,5 +1,6 @@
 import React from "react";
 import { data } from "../../../data";
+// This component render items from data array, then create two buttons 1) to delete selected items 2) delete all items
 
 const UseStateArray = () => {
   const [people, setPeople] = React.useState(data); //using React.useState() we're importing useState function without importing it at the top
@@ -8,7 +9,6 @@ const UseStateArray = () => {
     let remain = people.filter((person) => {
       return person.name !== personName;
     });
-
     setPeople(remain);
   };
 
