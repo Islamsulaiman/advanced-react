@@ -3,25 +3,23 @@ import React, { useState, useEffect } from "react";
 // cleanup function
 // second parameter
 const UseEffectBasics = () => {
-  let [item, setItem] = useState(0);
+  let [item, setItem] = useState(window.innerWidth);
+
+  let updateUi = () => setItem(window.innerWidth);
+
+  /*this will run every render */
   useEffect(() => {
-    console.log("hello");
-  }, [item]);
+    window.addEventListener("resize", updateUi);
+    /*this is the cleanup function that will remove the event when it's finished */
+    return () => {
+      window.removeEventListener("resize", updateUi);
+    };
+  });
 
   return (
     <>
-      <h2>{item}</h2>;
-      <button
-        onClick={() => {
-          if (item === 0) {
-            setItem(1);
-          } else {
-            setItem(0);
-          }
-        }}
-      >
-        change
-      </button>
+      <h2>Window size</h2>
+      <h3>{item}</h3>
     </>
   );
 };
