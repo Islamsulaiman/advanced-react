@@ -1,5 +1,5 @@
 import React from "react";
-import UseStateBasics from "./tutorial/1-useState/setup/4-useState-object";
+import UseStateBasics from "./tutorial/2-useEffect/setup/1-useEffect-basics";
 
 function App() {
   return (
