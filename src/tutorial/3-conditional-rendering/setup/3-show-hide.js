@@ -5,7 +5,6 @@ const ShowHide = () => {
 
   return (
     <>
-      <h3>{bool}</h3>
       <button
         className='btn'
         onClick={() => {
@@ -14,14 +13,27 @@ const ShowHide = () => {
       >
         Hide/appear Component
       </button>
+      <br style={{ color: "black" }} />
+      {bool && <Comp />}
     </>
   );
 };
 
-const comp = () => {
+const Comp = () => {
+  const [size, setSize] = useState(window.innerWidth);
+
+  const sizeWindow = () => {
+    setSize(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", sizeWindow);
+    return () => {
+      window.removeEventListener("resize", sizeWindow);
+    };
+  }, []);
   return (
     <>
-      <h3>Hello</h3>
+      <h3>{size}</h3>
     </>
   );
 };
