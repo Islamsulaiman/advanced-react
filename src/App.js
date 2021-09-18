@@ -1,5 +1,5 @@
 import React from "react";
-import UseStateBasics from "./tutorial/3-conditional-rendering/setup/3-show-hide";
+import UseStateBasics from "./tutorial/4-forms/setup/1-controlled-inputs";
 
 function App() {
   return (
