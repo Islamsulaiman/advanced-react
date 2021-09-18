@@ -1,5 +1,5 @@
 import React from "react";
-import UseStateBasics from "./tutorial/3-conditional-rendering/setup/2-short-circuit";
+import UseStateBasics from "./tutorial/3-conditional-rendering/setup/3-show-hide";
 
 function App() {
   return (
