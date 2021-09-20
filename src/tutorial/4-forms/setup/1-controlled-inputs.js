@@ -15,12 +15,9 @@ const ControlledInputs = () => {
     //Error handling
     if (firstName && email) {
       // if the user added a value
-      let user = { firstName, email }; // if the key and value is the same, then we can ignore typing both, we just type one name
+      let user = { ...person, id: new Date().getTime().toString() }; // the old person onject + unique id depending on the date
       //add the new object to the
-      console.log(person);
-      setPerson((person) => {
-        return [...person, user]; //use spread operator to add the old values then add the new value stored in user
-      });
+      setPerson(user);
       setEmail("");
       setFirstName("");
     } else {
