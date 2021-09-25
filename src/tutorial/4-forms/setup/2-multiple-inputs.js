@@ -1,62 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // JS
 // const input = document.getElementById('myText');
 // const inputValue = input.value
 // React
 // value, onChange
-// dynamic object keys
 
 const ControlledInputs = () => {
-  const [firstName, setFirstName] = useState('');
-  const [email, setEmail] = useState('');
+  const [person, setPerson] = useState({ firstName: "", email: "", age: "" });
   const [people, setPeople] = useState([]);
+
+  const handleChange = (e) => {
+    const myValue = e.target.value;
+    const myName = e.target.name;
+    setPerson({ ...person, [myName]: myValue });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName && email) {
-      const person = { id: new Date().getTime().toString(), firstName, email };
-      console.log(person);
-      setPeople((people) => {
-        return [...people, person];
-      });
-      setFirstName('');
-      setEmail('');
+    if (person.firstName && person.email && person.age) {
+      const newPerson = { ...person, id: new Date().getTime().toString() };
+      setPeople([...people, newPerson]);
+      setPerson({ firstName: "", email: "", age: "" });
     } else {
-      console.log('empty values');
+      console.log("Error: invalid or missing inputs");
     }
   };
+
   return (
     <>
-      <article>
-        <form className='form' onSubmit={handleSubmit}>
-          <div className='form-control'>
-            <label htmlFor='firstName'>Name : </label>
+      <article className='container'>
+        <form action='GET' className='form' onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor='firstName'>Name: </label>
             <input
               type='text'
-              id='firstName'
               name='firstName'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={person.firstName}
+              onChange={handleChange}
             />
           </div>
-          <div className='form-control'>
-            <label htmlFor='email'>Email : </label>
+          <div>
+            <label htmlFor='email'>Email: </label>
             <input
               type='email'
-              id='email'
               name='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={person.email}
+              onChange={handleChange}
             />
           </div>
-          <button type='submit'>add person</button>
+          <div>
+            <label htmlFor='age'>Age: </label>
+            <input
+              type='text'
+              name='age'
+              value={person.age}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <button type='submit'>Submit</button>
+          </div>
         </form>
-        {people.map((person, index) => {
-          const { id, firstName, email } = person;
+      </article>
+      <article>
+        {people.map((person) => {
+          const { id, firstName, email, age } = person;
           return (
-            <div className='item' key={id}>
+            <div key={id} className='item'>
               <h4>{firstName}</h4>
               <p>{email}</p>
+              <p>{age}</p>
             </div>
           );
         })}

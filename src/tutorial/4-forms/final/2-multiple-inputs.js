@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // JS
 // const input = document.getElementById('myText');
 // const inputValue = input.value
@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 // value, onChange
 
 const ControlledInputs = () => {
-  const [person, setPerson] = useState({ firstName: '', email: '', age: '' });
+  const [person, setPerson] = useState({ firstName: "", email: "", age: "" });
   const [people, setPeople] = useState([]);
   const handleChange = (e) => {
     const name = e.target.name;
@@ -18,7 +18,7 @@ const ControlledInputs = () => {
     if (person.firstName && person.email && person.age) {
       const newPerson = { ...person, id: new Date().getTime().toString() };
       setPeople([...people, newPerson]);
-      setPerson({ firstName: '', email: '', age: '' });
+      // setPerson({ firstName: '', email: '', age: '' });
     }
   };
   return (
