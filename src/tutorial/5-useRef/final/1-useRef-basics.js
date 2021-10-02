@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 // preserves value
 // DOES NOT trigger re-render
@@ -29,3 +29,12 @@ const UseRefBasics = () => {
 };
 
 export default UseRefBasics;
+
+const refContainer = useRef(null);
+
+useEffect(() => {
+  console.log(refContainer.current);
+  refContainer.current.focus();
+});
+
+<input type='text' ref={refContainer} />;
