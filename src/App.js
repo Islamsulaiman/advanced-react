@@ -1,5 +1,5 @@
 import React from "react";
-import UseStateBasics from "./tutorial/6-useReducer/setup/index";
+import UseStateBasics from "./tutorial/10-prop-types/setup/index";
 
 function App() {
   return (
