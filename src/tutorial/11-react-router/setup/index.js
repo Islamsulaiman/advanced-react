@@ -1,7 +1,11 @@
-import React from "react";
-// react router
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// pages
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
 import Home from "./Home";
 import About from "./About";
 import People from "./People";
@@ -9,22 +13,26 @@ import Error from "./Error";
 import Person from "./Person";
 // navbar
 import Navbar from "./Navbar";
+
 const ReactRouterSetup = () => {
+  const [login, setLogin] = useState(false);
   return (
-    <Router>
+    <Router basename='/Home'>
+      <Navbar />
+      <button
+        onClick={() => {
+          setLogin(!login);
+        }}
+      >
+        {login ? "Log out" : "Log in"}
+      </button>
       <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/about'>
-          <About />
-        </Route>
-        <Route path='/people'>
-          <People />
-        </Route>
-        <Route path='*'>
-          <Error />
-        </Route>
+        <Route path='/' exact component={Home} />
+        <Route path='/about' component={About} />
+        <Route path='/people'>{login ? <People /> : <Redirect to='/' />}</Route>
+        <Route path='/person/:kofta' component={Person} />
+
+        <Route path='*' component={Error} />
       </Switch>
     </Router>
   );
